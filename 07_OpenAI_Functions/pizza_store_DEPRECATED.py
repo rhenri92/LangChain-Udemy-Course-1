@@ -48,7 +48,7 @@ def add_pizza(pizza_name: str, price: float) -> dict:
     return {"message": f"Pizza {pizza_name} added successfully!"}
 
 
-llm = ChatOpenAI(model="gpt-4o-mini-0613", temperature=0)
+llm = ChatOpenAI(model="gpt-3.5-turbo", temperature=0)
 
 template = """You are an AI chatbot having a conversation with a human.
 
@@ -62,8 +62,7 @@ chain = create_openai_fn_chain([get_pizza_info, add_pizza], llm, prompt, verbose
 
 # result1 = chain.run("I want to add the pizza 'Jumbo' for 13.99")
 # print(result1)
-result2 = chain.invoke("Who are the main characters of the A-Team?")
-print(result2)
-
-# result3 = chain.run("How much does the Jumbo pizza cost?")
-# print(result3)
+# result2 = chain.invoke("Who are the main characters of the A-Team?")
+# print(result2)
+result3 = chain.run("How much does the Jumbo pizza cost?")
+print(result3)
