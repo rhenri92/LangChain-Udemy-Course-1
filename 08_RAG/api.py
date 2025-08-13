@@ -4,7 +4,8 @@ from langchain_openai import ChatOpenAI, OpenAIEmbeddings
 
 # from langchain.chains import RetrievalQA
 from langchain.prompts import PromptTemplate
-from langchain.vectorstores.faiss import FAISS
+# from langchain.vectorstores.faiss import FAISS
+from langchain_community.vectorstores import FAISS
 from langchain.chains.retrieval import create_retrieval_chain
 from langchain.chains.combine_documents import create_stuff_documents_chain
 
@@ -46,9 +47,9 @@ text: {input}
 PROMPT = PromptTemplate(template=template, input_variables=["context", "input"])
 
 # chain_type_kwargs = {"prompt": PROMPT}
-llm = ChatOpenAI(model="gpt-4o-mini")
+llm = ChatOpenAI(model="gpt-3.5-turbo")
 
-vectorstore = FAISS.load_local("index", embeddings)
+vectorstore = FAISS.load_local("index", embeddings, allow_dangerous_deserialization=True)
 retriever = vectorstore.as_retriever()
 
 # qa = RetrievalQA.from_chain_type(

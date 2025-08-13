@@ -4,3 +4,6 @@
 udemycourse
 test.ipynb
 .venv
+12_MicroServiceArchitecture/secrets.yaml
+
+.DS_Store

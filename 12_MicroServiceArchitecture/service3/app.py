@@ -7,7 +7,7 @@ import openai
 from langchain.prompts import PromptTemplate
 import logging
 from dotenv import find_dotenv, load_dotenv
-from langchain_postgres import PGVector
+from langchain_community.vectorstores.pgvector import PGVector
 from langchain_openai import ChatOpenAI, OpenAIEmbeddings
 from langchain.schema import AIMessage, HumanMessage, SystemMessage
 from langchain.prompts import (
@@ -93,7 +93,7 @@ app.add_middleware(
 async def service3(conversation_id: str, conversation: Conversation):
     query = conversation.conversation[-1].content
 
-    docs = retriever.invoke(query=query)
+    docs = retriever.invoke(query)
     docs = format_docs(docs=docs)
 
     prompt = system_message_prompt.format(context=docs)
